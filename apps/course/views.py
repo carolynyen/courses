@@ -20,5 +20,6 @@ def delete(request, id):
     return render(request, 'course/delete.html', {"target":target})
 
 def destroy(request, id):
-    Course.objects.filter(id=id).delete()
+    if request.method == 'POST':
+        Course.objects.filter(id=id).delete()
     return redirect('/')
